@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Penjual - Pasar Gedongombo</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f2f2f2;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:400px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+color:#138a36;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ccc;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#138a36;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+a{
+text-decoration:none;
+color:#138a36;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Daftar Penjual</h2>
+
+<input type="text" id="nama" placeholder="Nama Lengkap">
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="password" placeholder="Password">
+
+<button id="daftar">DAFTAR</button>
+
+<br><br>
+
+<center>
+Sudah punya akun?<br>
+<a href="login.html">Login</a>
+</center>
+
+</div>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="register.js"></script>
+
+</body>
+</html>
