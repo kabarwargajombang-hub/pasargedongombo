@@ -113,6 +113,30 @@ text-align:center;
 padding:15px;
 margin-top:20px;
 }
+  .bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:65px;
+background:#ffffff;
+display:flex;
+justify-content:space-around;
+align-items:center;
+box-shadow:0 -2px 8px rgba(0,0,0,.15);
+}
+
+.bottom-nav a{
+text-decoration:none;
+color:#198754;
+font-size:13px;
+font-weight:bold;
+text-align:center;
+}
+
+body{
+padding-bottom:80px;
+}
 </style>
 
 </head>
@@ -156,9 +180,17 @@ Chat WhatsApp
 
 </div>
 
-<footer>
+<footer class="bottom-nav">
 
-© 2026 Pasar Gedongombo
+<a href="#">🏠<br>Beranda</a>
+
+<a href="#">📂<br>Kategori</a>
+
+<a href="#">➕<br>Jual</a>
+
+<a href="#">❤️<br>Favorit</a>
+
+<a href="#">👤<br>Akun</a>
 
 </footer>
 
