@@ -8,8 +8,6 @@ onAuthStateChanged
 
 import {
 collection,
-query,
-where,
 getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -39,16 +37,13 @@ try{
 
 const q = query(
 
-collection(db,"produk"),
-
-where("uidPenjual","==",user.uid)
+collection(db,"produk")
 
 );
 
 
 
 const hasil = await getDocs(q);
-
 
 
 tempatProduk.innerHTML="";
