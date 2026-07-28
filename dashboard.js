@@ -75,6 +75,9 @@ Kategori:
 ${produk.kategori}
 </p>
 
+<button class="hapusProduk" data-id="${doc.id}">
+🗑️ Hapus Produk
+</button>
 
 </div>
 
