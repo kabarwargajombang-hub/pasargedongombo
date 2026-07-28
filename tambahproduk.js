@@ -1,8 +1,10 @@
-import { db } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
-import { 
-collection, 
-addDoc 
+import {
+collection,
+addDoc,
+doc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
@@ -10,6 +12,36 @@ const tombol = document.getElementById("simpanProduk");
 
 
 tombol.addEventListener("click", async()=>{
+
+
+const user = auth.currentUser;
+
+
+if(!user){
+
+alert("Silakan login terlebih dahulu");
+
+return;
+
+}
+
+
+// Ambil data toko penjual
+
+const tokoRef = doc(db,"toko",user.uid);
+
+const tokoSnap = await getDoc(tokoRef);
+
+
+let dataToko = {};
+
+
+if(tokoSnap.exists()){
+
+dataToko = tokoSnap.data();
+
+}
+
 
 
 const namaProduk = document.getElementById("namaProduk").value;
@@ -27,11 +59,10 @@ const deskripsi = document.getElementById("deskripsi").value;
 if(
 namaProduk=="" ||
 harga=="" ||
-stok=="" ||
-kategori==""
+stok==""
 ){
 
-alert("Mohon lengkapi data produk");
+alert("Lengkapi data produk");
 
 return;
 
@@ -55,6 +86,17 @@ kategori:kategori,
 
 deskripsi:deskripsi,
 
+
+namaToko:dataToko.namaToko || "",
+
+whatsapp:dataToko.whatsapp || "",
+
+pemilik:dataToko.namaPemilik || "",
+
+
+uidPenjual:user.uid,
+
+
 tanggal:new Date()
 
 
@@ -65,22 +107,17 @@ tanggal:new Date()
 alert("Produk berhasil ditambahkan");
 
 
-document.getElementById("namaProduk").value="";
-
-document.getElementById("harga").value="";
-
-document.getElementById("stok").value="";
-
-document.getElementById("kategori").value="";
-
-document.getElementById("deskripsi").value="";
+window.location.reload();
 
 
 }
 
+
 catch(error){
 
-alert("Gagal menambahkan produk : "+error.message);
+
+alert(error.message);
+
 
 }
 
