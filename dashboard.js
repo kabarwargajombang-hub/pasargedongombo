@@ -1,122 +1,107 @@
 import { auth, db } from "./firebase.js";
 
 import {
-onAuthStateChanged
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-collection,
-getDocs
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
 const tempatProduk = document.getElementById("produkSaya");
-
 const jumlahProduk = document.getElementById("jumlahProduk");
 
+onAuthStateChanged(auth, async (user) => {
 
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
 
-onAuthStateChanged(auth, async(user)=>{
+  try {
 
+    const hasil = await getDocs(collection(db, "produk"));
 
-if(!user){
+    tempatProduk.innerHTML = "";
 
-window.location.href="login.html";
+    let jumlah = 0;
 
-return;
+    hasil.forEach((item) => {
 
-}
+      const produk = item.data();
 
+      jumlah++;
 
-try{
+      tempatProduk.innerHTML += `
 
+      <div class="card">
 
-const hasil = await getDocs(collection(db,"produk"));
+      <h3>${produk.namaProduk}</h3>
 
+      <p><b>Harga :</b> Rp${Number(produk.harga).toLocaleString("id-ID")}</p>
 
-tempatProduk.innerHTML="";
+      <p><b>Stok :</b> ${produk.stok}</p>
 
+      <p><b>Kategori :</b> ${produk.kategori}</p>
 
-let jumlah = 0;
+      <button class="hapusProduk" data-id="${item.id}">
+      🗑️ Hapus Produk
+      </button>
 
+      </div>
 
+      `;
 
-hasil.forEach((doc)=>{
+    });
 
+    jumlahProduk.innerHTML = jumlah;
 
-const produk = doc.data();
+    if (jumlah === 0) {
 
+      tempatProduk.innerHTML = `
+      <p class="info">Belum ada produk.</p>
+      `;
 
-// tampilkan semua produk dulu untuk pengecekan
+    }
 
-jumlah++;
+    // Event tombol hapus
+    document.querySelectorAll(".hapusProduk").forEach((btn) => {
 
+      btn.addEventListener("click", async () => {
 
-tempatProduk.innerHTML += `
+        const yakin = confirm("Yakin ingin menghapus produk ini?");
 
-<div class="card">
+        if (!yakin) return;
 
-<h3>${produk.namaProduk}</h3>
+        try {
 
-<p>
-Harga:
-<b>
-Rp${Number(produk.harga).toLocaleString("id-ID")}
-</b>
-</p>
+          await deleteDoc(doc(db, "produk", btn.dataset.id));
 
-<p>
-Stok:
-${produk.stok}
-</p>
+          alert("Produk berhasil dihapus");
 
-<p>
-Kategori:
-${produk.kategori}
-</p>
+          location.reload();
 
-<button class="hapusProduk" data-id="${doc.id}">
-🗑️ Hapus Produk
-</button>
+        } catch (error) {
 
-</div>
+          console.log(error);
 
-`;
+          alert("Gagal menghapus produk");
 
+        }
 
-});
+      });
 
+    });
 
+  } catch (error) {
 
-jumlahProduk.innerHTML = jumlah;
+    console.log(error);
 
+    tempatProduk.innerHTML = "Gagal mengambil data.";
 
-
-if(jumlah==0){
-
-tempatProduk.innerHTML =
-
-`
-<p class="info">
-Belum ada produk.
-</p>
-`;
-
-}
-
-
-
-}
-
-
-catch(error){
-
-console.log(error);
-
-tempatProduk.innerHTML =
-"Gagal mengambil data";
-
-}
-
+  }
 
 });
