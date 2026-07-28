@@ -87,12 +87,20 @@ font-weight:bold;
 
 <div class="card">
 
-<input type="file">
+<input 
+type="file">
 
-<input type="text" placeholder="Nama Produk">
 
-<select>
-<option>-- Pilih Kategori --</option>
+<input 
+type="text"
+id="namaProduk"
+placeholder="Nama Produk">
+
+
+<select id="kategori">
+
+<option value="">-- Pilih Kategori --</option>
+
 <option>Makanan</option>
 <option>Minuman</option>
 <option>Pertanian</option>
@@ -101,24 +109,42 @@ font-weight:bold;
 <option>Fashion</option>
 <option>Kerajinan</option>
 <option>Jasa</option>
+
 </select>
 
-<input type="number" placeholder="Harga">
 
-<input type="number" placeholder="Stok">
+<input 
+type="number"
+id="harga"
+placeholder="Harga">
 
-<select>
+
+<input 
+type="number"
+id="stok"
+placeholder="Stok">
+
+
+<select id="satuan">
+
 <option>Pcs</option>
 <option>Kg</option>
 <option>Gram</option>
 <option>Liter</option>
 <option>Botol</option>
 <option>Bungkus</option>
+
 </select>
 
-<textarea placeholder="Deskripsi Produk"></textarea>
 
-<button>Simpan Produk</button>
+<textarea 
+id="deskripsi"
+placeholder="Deskripsi Produk"></textarea>
+
+
+<button id="simpanProduk">
+Simpan Produk
+</button>
 
 <a class="kembali" href="dashboard.html">
 
@@ -129,6 +155,10 @@ font-weight:bold;
 </div>
 
 </div>
+  
+<script type="module" src="firebase.js"></script>
 
+<script type="module" src="tambahproduk.js"></script>
+  
 </body>
 </html>
