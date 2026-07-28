@@ -6,6 +6,8 @@ import {
 
 import {
   collection,
+  query,
+  where,
   getDocs,
   deleteDoc,
   doc
@@ -23,17 +25,32 @@ onAuthStateChanged(auth, async (user) => {
 
   try {
 
-    const hasil = await getDocs(collection(db, "produk"));
+    // Ambil hanya produk milik penjual yang sedang login
+    const q = query(
+      collection(db, "produk"),
+      where("uidPenjual", "==", user.uid)
+    );
+
+    const hasil = await getDocs(q);
 
     tempatProduk.innerHTML = "";
 
-    let jumlah = 0;
+    jumlahProduk.textContent = hasil.size;
+
+    if (hasil.empty) {
+
+      tempatProduk.innerHTML = `
+      <p class="info">
+      Belum ada produk.
+      </p>
+      `;
+
+      return;
+    }
 
     hasil.forEach((item) => {
 
       const produk = item.data();
-
-      jumlah++;
 
       tempatProduk.innerHTML += `
 
@@ -47,8 +64,12 @@ onAuthStateChanged(auth, async (user) => {
 
       <p><b>Kategori :</b> ${produk.kategori}</p>
 
-      <button class="hapusProduk" data-id="${item.id}">
-      🗑️ Hapus Produk
+      <p><b>Nama Toko :</b> ${produk.namaToko}</p>
+
+      <button
+        class="hapusProduk"
+        data-id="${item.id}">
+        🗑️ Hapus Produk
       </button>
 
       </div>
@@ -56,16 +77,6 @@ onAuthStateChanged(auth, async (user) => {
       `;
 
     });
-
-    jumlahProduk.innerHTML = jumlah;
-
-    if (jumlah === 0) {
-
-      tempatProduk.innerHTML = `
-      <p class="info">Belum ada produk.</p>
-      `;
-
-    }
 
     // Event tombol hapus
     document.querySelectorAll(".hapusProduk").forEach((btn) => {
@@ -86,9 +97,9 @@ onAuthStateChanged(auth, async (user) => {
 
         } catch (error) {
 
-          console.log(error);
-
           alert("Gagal menghapus produk");
+
+          console.log(error);
 
         }
 
@@ -100,7 +111,11 @@ onAuthStateChanged(auth, async (user) => {
 
     console.log(error);
 
-    tempatProduk.innerHTML = "Gagal mengambil data.";
+    tempatProduk.innerHTML = `
+    <p class="info">
+    Gagal mengambil data produk.
+    </p>
+    `;
 
   }
 
