@@ -15,7 +15,7 @@ getDocs
 
 
 
-const tempatProduk = document.getElementById("produkSaya");
+const jumlahProduk = document.getElementById("jumlahProduk");
 
 
 
@@ -57,6 +57,7 @@ tempatProduk.innerHTML="";
 
 if(hasil.empty){
 
+jumlahProduk.innerHTML = 0;
 
 tempatProduk.innerHTML=
 
@@ -66,13 +67,11 @@ Belum ada produk.
 </p>
 `;
 
-
 return;
-
 
 }
 
-
+jumlahProduk.innerHTML = hasil.size;
 
 hasil.forEach((doc)=>{
 
