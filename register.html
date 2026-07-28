@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Daftar Penjual - Pasar Gedongombo</title>
 
 <style>
+
 body{
 font-family:Arial,sans-serif;
 background:#f2f2f2;
@@ -44,40 +48,79 @@ color:white;
 border:none;
 border-radius:8px;
 font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0f6d2c;
 }
 
 a{
 text-decoration:none;
 color:#138a36;
 }
+
 </style>
 
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-<h2>Daftar Penjual</h2>
 
-<input type="text" id="nama" placeholder="Nama Lengkap">
+<h2>
+📝 Daftar Penjual
+</h2>
 
-<input type="email" id="email" placeholder="Email">
 
-<input type="password" id="password" placeholder="Password">
+<input 
+type="text" 
+id="nama"
+placeholder="Nama Lengkap">
 
-<button id="daftar">DAFTAR</button>
+
+<input 
+type="email" 
+id="email"
+placeholder="Email">
+
+
+<input 
+type="password" 
+id="password"
+placeholder="Password">
+
+
+<button id="daftar">
+DAFTAR
+</button>
+
 
 <br><br>
 
+
 <center>
-Sudah punya akun?<br>
-<a href="login.html">Login</a>
+
+Sudah punya akun?
+
+<br>
+
+<a href="login.html">
+Login
+</a>
+
 </center>
+
 
 </div>
 
-<script type="module" src="firebase.js"></script>
+
 <script type="module" src="register.js"></script>
 
+
 </body>
+
 </html>
