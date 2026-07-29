@@ -66,7 +66,15 @@ card.className="card";
 
 card.innerHTML=`
 
-<img src="https://picsum.photos/600/350">
+<img
+src="${produk.foto || 'https://picsum.photos/600/350'}"
+alt="${produk.namaProduk}"
+style="
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+">
 
 <h3>${produk.namaProduk}</h3>
 
