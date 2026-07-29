@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Daftar Penjual - Pasar Gedongombo</title>
 
+
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -13,38 +19,53 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
+
 body{
 background:#f5f5f5;
 }
 
+
 .header{
+
 background:#198754;
 color:white;
 text-align:center;
 padding:25px;
+
 }
+
 
 .container{
+
 padding:20px;
+
 }
 
+
 .card{
+
 background:white;
 padding:20px;
 border-radius:15px;
 box-shadow:0 2px 10px rgba(0,0,0,.15);
+
 }
 
+
 input,select{
+
 width:100%;
 padding:14px;
 margin-top:15px;
 border:1px solid #ccc;
 border-radius:10px;
 font-size:16px;
+
 }
 
+
 button{
+
 width:100%;
 padding:15px;
 margin-top:20px;
@@ -54,64 +75,180 @@ border:none;
 border-radius:10px;
 font-size:18px;
 font-weight:bold;
+
 }
+
 
 button:hover{
+
 background:#146c43;
+
 }
+
 
 .login{
+
 text-align:center;
 margin-top:20px;
+
 }
 
+
 .login a{
+
 text-decoration:none;
 color:#198754;
 font-weight:bold;
+
 }
+
 </style>
+
 
 </head>
 
+
+
 <body>
 
+
+
 <div class="header">
+
 <h1>📝 Daftar Penjual</h1>
+
 <p>Pasar Gedongombo</p>
+
 </div>
+
+
+
 
 <div class="container">
 
+
 <div class="card">
 
-<input type="text" placeholder="Nama Lengkap">
 
-<input type="text" placeholder="Nama Toko">
 
-<input type="email" placeholder="Email">
+<input
+type="text"
+id="namaPemilik"
+placeholder="Nama Lengkap">
 
-<input type="password" placeholder="Password">
 
-<input type="text" placeholder="Nomor WhatsApp">
 
-<input type="text" placeholder="Alamat Lengkap">
+<input
+type="text"
+id="namaToko"
+placeholder="Nama Toko">
 
-<select>
-<option>-- Pilih Dusun --</option>
-<option>Gedongombo 1</option>
-<option>Gedongombo 2</option>
-<option>Gedongombo 3</option>
-<option>Gedongombo 4</option>
+
+
+<input
+type="email"
+id="email"
+placeholder="Email">
+
+
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+
+
+<input
+type="text"
+id="whatsapp"
+placeholder="Nomor WhatsApp">
+
+
+
+
+
+<select id="dusun">
+
+
+<option value="">
+-- Pilih Dusun --
+</option>
+
+
+<option value="Balong">
+Balong
+</option>
+
+
+<option value="Gedong">
+Gedong
+</option>
+
+
+<option value="Kalianyar">
+Kalianyar
+</option>
+
+
+<option value="Sukuanyar">
+Sukuanyar
+</option>
+
+
+<option value="Kalimati">
+Kalimati
+</option>
+
+
+<option value="Balongmojo">
+Balongmojo
+</option>
+
+
 </select>
 
-<button>Daftar Sekarang</button>
+
+
+
+
+<input
+type="text"
+id="rtRw"
+placeholder="RT/RW">
+
+
+
+
+
+<input
+type="text"
+id="desa"
+value="Gedongombo"
+readonly>
+
+
+
+
+
+<button id="daftar">
+
+Daftar Sekarang
+
+</button>
+
+
+
+
 
 <div class="login">
 
+
 Sudah punya akun?
 
+
 <br><br>
+
 
 <a href="login.html">
 
@@ -119,11 +256,21 @@ Login
 
 </a>
 
-</div>
 
 </div>
 
+
+
 </div>
+
+
+</div>
+
+
+
+<script type="module" src="daftar.js"></script>
+
 
 </body>
+
 </html>
