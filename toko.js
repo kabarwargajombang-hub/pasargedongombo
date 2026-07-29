@@ -2,20 +2,14 @@ import { db } from "./firebase.js";
 
 
 import {
-
 collection,
-
 getDocs,
-
 doc,
-
 getDoc,
-
 query,
-
 where
-
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 
@@ -24,6 +18,7 @@ where
 const urlParams = new URLSearchParams(window.location.search);
 
 const uidToko = urlParams.get("uid");
+
 
 
 
@@ -38,6 +33,15 @@ const whatsapp = document.getElementById("whatsapp");
 const jumlahProdukTampil = document.getElementById("jumlahProduk");
 
 const produkToko = document.getElementById("produkToko");
+
+
+
+
+
+// Simpan nomor WA toko
+
+let nomorWA = "";
+
 
 
 
@@ -77,13 +81,34 @@ pemilik.innerHTML =
 
 
 
+nomorWA = data.whatsapp || "";
+
+
+
+// bersihkan nomor
+
+nomorWA = nomorWA.replace(/\D/g,"");
+
+
+
+if(nomorWA.startsWith("0")){
+
+
+nomorWA = "62" + nomorWA.substring(1);
+
+
+}
+
+
+
 whatsapp.innerHTML =
 
-"📱 " + (data.whatsapp || "-");
+"📱 " + nomorWA;
 
 
 
 }
+
 
 
 }
@@ -96,6 +121,8 @@ console.log(error);
 
 
 }
+
+
 
 
 
@@ -152,6 +179,7 @@ return;
 
 
 
+
 hasil.forEach((item)=>{
 
 
@@ -165,10 +193,13 @@ const produk = item.data();
 produkToko.innerHTML += `
 
 
+
 <div class="produk">
 
 
+
 <img src="${produk.foto || 'https://picsum.photos/600/350'}">
+
 
 
 <h3>
@@ -195,19 +226,37 @@ Stok : ${produk.stok}
 
 
 
-<a class="wa"
 
-href="https://wa.me/${produk.whatsapp}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(produk.namaProduk)}">
+
+<a
+
+class="wa"
+
+href="https://wa.me/${nomorWA}?text=${encodeURIComponent(
+
+"Halo, saya tertarik dengan produk " +
+
+produk.namaProduk +
+
+" di Pasar Gedongombo."
+
+)}">
+
 
 💬 Chat WhatsApp
 
+
 </a>
+
+
 
 
 </div>
 
 
+
 `;
+
 
 
 });
@@ -224,23 +273,28 @@ jumlahProdukTampil.innerHTML=
 }
 
 
+
 catch(error){
 
+
 console.log(error);
+
 
 produkToko.innerHTML=
 
 "Gagal mengambil produk";
 
-}
-
 
 }
 
 
 
+}
 
 
-tampilkanToko();
+
+
+
+await tampilkanToko();
 
 tampilkanProduk();
