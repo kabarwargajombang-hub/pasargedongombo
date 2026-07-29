@@ -19,36 +19,71 @@ let kategoriAktif = "Semua";
 
 
 
+// Format nomor WhatsApp Indonesia
+
+function formatNomorWA(nomor){
+
+nomor = nomor.replace(/\D/g,"");
+
+
+if(nomor.startsWith("0")){
+
+nomor = "62" + nomor.substring(1);
+
+}
+
+
+return nomor;
+
+}
+
+
+
+
+
 // Ambil WhatsApp dari toko
 
 async function ambilWhatsAppToko(uidPenjual){
 
+
 try{
 
+
 const tokoRef = doc(db,"toko",uidPenjual);
+
 
 const tokoSnap = await getDoc(tokoRef);
 
 
+
 if(tokoSnap.exists()){
+
 
 return tokoSnap.data().whatsapp || "";
 
+
 }
 
+
 return "";
+
+
 
 }
 
 catch(error){
 
+
 console.log(error);
 
 return "";
 
-}
 
 }
+
+
+}
+
 
 
 
@@ -68,6 +103,7 @@ const querySnapshot = await getDocs(collection(db,"produk"));
 semuaProduk=[];
 
 
+
 querySnapshot.forEach((item)=>{
 
 
@@ -83,11 +119,13 @@ id:item.id,
 });
 
 
+
 filterProduk();
 
 
 
 }
+
 
 catch(error){
 
@@ -95,7 +133,7 @@ catch(error){
 console.log(error);
 
 
-daftarProduk.innerHTML=
+daftarProduk.innerHTML =
 "<p>Gagal mengambil produk.</p>";
 
 
@@ -117,10 +155,11 @@ async function tampilkanProduk(data){
 daftarProduk.innerHTML="";
 
 
+
 if(data.length==0){
 
 
-daftarProduk.innerHTML=
+daftarProduk.innerHTML =
 "<p>Tidak ada produk.</p>";
 
 
@@ -132,11 +171,16 @@ return;
 
 
 
+
 for(const produk of data){
 
 
 
-const nomorWA = await ambilWhatsAppToko(produk.uidPenjual);
+let nomorWA = await ambilWhatsAppToko(produk.uidPenjual);
+
+
+nomorWA = formatNomorWA(nomorWA);
+
 
 
 
@@ -162,6 +206,7 @@ border-radius:10px;
 
 
 <h3>${produk.namaProduk}</h3>
+
 
 
 
@@ -242,6 +287,7 @@ href="https://wa.me/${nomorWA}?text=Halo,%20saya%20tertarik%20dengan%20${encodeU
 `;
 
 
+
 daftarProduk.appendChild(card);
 
 
@@ -255,7 +301,9 @@ daftarProduk.appendChild(card);
 
 
 
-// Filter
+
+
+// Filter produk
 
 function filterProduk(){
 
@@ -267,8 +315,7 @@ const kata=cariProduk.value.toLowerCase();
 const hasil=semuaProduk.filter((produk)=>{
 
 
-
-const cocokCari=
+const cocokCari =
 
 produk.namaProduk.toLowerCase().includes(kata) ||
 
@@ -277,12 +324,12 @@ produk.namaProduk.toLowerCase().includes(kata) ||
 
 
 
-
-const cocokKategori=
+const cocokKategori =
 
 kategoriAktif=="Semua" ||
 
 produk.kategori===kategoriAktif;
+
 
 
 
@@ -313,6 +360,7 @@ cariProduk.addEventListener("input",filterProduk);
 
 
 
+
 // Kategori
 
 tombolKategori.forEach((btn)=>{
@@ -321,17 +369,17 @@ tombolKategori.forEach((btn)=>{
 btn.addEventListener("click",()=>{
 
 
-kategoriAktif=btn.dataset.kategori;
+kategoriAktif = btn.dataset.kategori;
 
 
 filterProduk();
 
 
-
 });
 
 
 });
+
 
 
 
