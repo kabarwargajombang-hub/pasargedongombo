@@ -7,18 +7,19 @@ getDocs
 
 const daftarProduk = document.getElementById("daftarProduk");
 const cariProduk = document.getElementById("cariProduk");
+const tombolKategori = document.querySelectorAll(".kategori");
 
-// Menyimpan semua produk
 let semuaProduk = [];
+let kategoriAktif = "Semua";
 
-// Ambil produk dari Firebase
+// Ambil data produk
 async function ambilProduk(){
 
 try{
 
 const querySnapshot = await getDocs(collection(db,"produk"));
 
-semuaProduk = [];
+semuaProduk=[];
 
 querySnapshot.forEach((item)=>{
 
@@ -32,7 +33,7 @@ id:item.id,
 
 });
 
-tampilkanProduk(semuaProduk);
+filterProduk();
 
 }catch(error){
 
@@ -51,7 +52,7 @@ daftarProduk.innerHTML="";
 
 if(data.length==0){
 
-daftarProduk.innerHTML="<p>Tidak ada produk ditemukan.</p>";
+daftarProduk.innerHTML="<p>Tidak ada produk.</p>";
 
 return;
 
@@ -69,8 +70,8 @@ card.innerHTML=`
 
 <h3>${produk.namaProduk}</h3>
 
-<div style="font-weight:bold;color:#198754;">
-🏪 ${produk.namaToko || "Penjual Gedongombo"}
+<div style="font-weight:bold;color:#198754">
+🏪 ${produk.namaToko}
 </div>
 
 <div class="harga">
@@ -81,9 +82,7 @@ Rp${Number(produk.harga).toLocaleString("id-ID")}
 Stok : ${produk.stok}
 </div>
 
-<p>
-${produk.deskripsi || "-"}
-</p>
+<p>${produk.deskripsi || "-"}</p>
 
 <a
 href="detailproduk.html?id=${produk.id}"
@@ -98,17 +97,13 @@ text-align:center;
 text-decoration:none;
 font-weight:bold;
 ">
-
 👀 Lihat Detail
-
 </a>
 
 <a
 class="wa"
 href="https://wa.me/${produk.whatsapp}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(produk.namaProduk)}">
-
 💬 Chat WhatsApp
-
 </a>
 
 `;
@@ -119,26 +114,46 @@ daftarProduk.appendChild(card);
 
 }
 
-// Pencarian realtime
-cariProduk.addEventListener("input",()=>{
+// Filter gabungan
+function filterProduk(){
 
-const kata = cariProduk.value.toLowerCase();
+const kata=cariProduk.value.toLowerCase();
 
-const hasil = semuaProduk.filter((produk)=>{
+const hasil=semuaProduk.filter((produk)=>{
 
-return (
+const cocokCari=
 
 produk.namaProduk.toLowerCase().includes(kata) ||
 
-(produk.namaToko || "").toLowerCase().includes(kata) ||
+(produk.namaToko || "").toLowerCase().includes(kata);
 
-(produk.kategori || "").toLowerCase().includes(kata)
+const cocokKategori=
 
-);
+kategoriAktif=="Semua" ||
+
+produk.kategori===kategoriAktif;
+
+return cocokCari && cocokKategori;
 
 });
 
 tampilkanProduk(hasil);
+
+}
+
+// Event pencarian
+cariProduk.addEventListener("input",filterProduk);
+
+// Event kategori
+tombolKategori.forEach((btn)=>{
+
+btn.addEventListener("click",()=>{
+
+kategoriAktif=btn.dataset.kategori;
+
+filterProduk();
+
+});
 
 });
 
