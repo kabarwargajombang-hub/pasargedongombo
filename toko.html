@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Toko</title>
+<title>Profil Toko</title>
+
 
 <style>
 
@@ -17,50 +19,87 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
+
 body{
 background:#f5f5f5;
 }
 
+
 header{
+
 background:#198754;
+
 color:white;
+
 padding:20px;
+
 text-align:center;
+
 }
+
 
 .container{
+
 padding:15px;
+
 }
 
-.card{
+
+.info-toko{
+
 background:white;
-padding:15px;
+
+padding:20px;
+
 border-radius:15px;
-margin-bottom:15px;
+
 box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+margin-bottom:15px;
+
 }
+
 
 .produk{
+
 background:white;
+
 padding:15px;
+
 border-radius:15px;
+
 margin-bottom:15px;
+
 box-shadow:0 2px 8px rgba(0,0,0,.1);
+
 }
+
 
 .produk img{
+
 width:100%;
-border-radius:10px;
+
 height:220px;
+
 object-fit:cover;
+
+border-radius:10px;
+
 }
 
+
 .harga{
+
 color:red;
+
 font-size:20px;
+
 font-weight:bold;
+
 margin-top:10px;
+
 }
+
 
 .wa{
 
@@ -72,11 +111,11 @@ background:#25D366;
 
 color:white;
 
-text-align:center;
-
 padding:12px;
 
 border-radius:10px;
+
+text-align:center;
 
 text-decoration:none;
 
@@ -84,31 +123,67 @@ font-weight:bold;
 
 }
 
+
 </style>
+
 
 </head>
 
+
 <body>
+
 
 <header>
 
-<h2 id="namaToko">Nama Toko</h2>
 
-<p id="pemilik"></p>
+<h2 id="namaToko">
 
-<p id="whatsapp"></p>
+🏪 Nama Toko
+
+</h2>
+
+
+<p id="pemilik">
+
+👤 Pemilik
+
+</p>
+
+
+<p id="whatsapp">
+
+📱 WhatsApp
+
+</p>
+
+
+<p id="jumlahProduk">
+
+📦 Jumlah Produk: 0
+
+</p>
+
 
 </header>
 
+
+
 <div class="container">
+
 
 <div id="produkToko">
 
-</div>
 
 </div>
+
+
+</div>
+
+
 
 <script type="module" src="toko.js"></script>
 
+
 </body>
+
 </html>
