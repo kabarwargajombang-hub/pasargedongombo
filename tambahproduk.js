@@ -7,6 +7,23 @@ doc,
 getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const fotoProduk = document.getElementById("fotoProduk");
+
+const previewFoto = document.getElementById("previewFoto");
+
+fotoProduk.addEventListener("change", () => {
+
+const file = fotoProduk.files[0];
+
+if(file){
+
+previewFoto.src = URL.createObjectURL(file);
+
+previewFoto.style.display = "block";
+
+}
+
+});
 
 const tombol = document.getElementById("simpanProduk");
 
