@@ -66,11 +66,41 @@ onAuthStateChanged(auth, async (user) => {
 
       <p><b>Nama Toko :</b> ${produk.namaToko}</p>
 
-      <button
-        class="hapusProduk"
-        data-id="${item.id}">
-        🗑️ Hapus Produk
-      </button>
+      <a
+href="editproduk.html?id=${item.id}"
+style="
+display:block;
+text-decoration:none;
+background:#0d6efd;
+color:white;
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+margin-top:10px;
+">
+
+✏️ Edit Produk
+
+</a>
+
+<button
+class="hapusProduk"
+data-id="${item.id}"
+style="
+width:100%;
+margin-top:10px;
+background:#dc3545;
+color:white;
+padding:12px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+">
+
+🗑️ Hapus Produk
+
+</button>
 
       </div>
 
