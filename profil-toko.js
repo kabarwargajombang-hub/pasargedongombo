@@ -26,8 +26,6 @@ window.location.href="login.html";
 
 }
 
-
-
 });
 
 
@@ -66,6 +64,18 @@ document.getElementById("namaPemilik").value,
 
 whatsapp:
 document.getElementById("whatsapp").value,
+
+
+dusun:
+document.getElementById("dusun").value,
+
+
+rtRw:
+document.getElementById("rtRw").value,
+
+
+desa:
+document.getElementById("desa").value,
 
 
 alamat:
