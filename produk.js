@@ -78,9 +78,17 @@ border-radius:10px;
 
 <h3>${produk.namaProduk}</h3>
 
-<div style="font-weight:bold;color:#198754">
-🏪 ${produk.namaToko}
-</div>
+<a
+href="toko.html?uid=${produk.uidPenjual}"
+style="
+display:block;
+font-weight:bold;
+color:#198754;
+text-decoration:none;
+margin-top:5px;
+">
+🏪 ${produk.namaToko || "Toko Gedongombo"}
+</a>
 
 <div class="harga">
 Rp${Number(produk.harga).toLocaleString("id-ID")}
