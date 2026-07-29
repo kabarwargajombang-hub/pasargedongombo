@@ -6,18 +6,58 @@ getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const daftarProduk = document.getElementById("daftarProduk");
+const cariProduk = document.getElementById("cariProduk");
 
-async function tampilkanProduk(){
+// Menyimpan semua produk
+let semuaProduk = [];
+
+// Ambil produk dari Firebase
+async function ambilProduk(){
 
 try{
 
 const querySnapshot = await getDocs(collection(db,"produk"));
 
-daftarProduk.innerHTML="";
+semuaProduk = [];
 
 querySnapshot.forEach((item)=>{
 
-const produk=item.data();
+semuaProduk.push({
+
+id:item.id,
+
+...item.data()
+
+});
+
+});
+
+tampilkanProduk(semuaProduk);
+
+}catch(error){
+
+console.log(error);
+
+daftarProduk.innerHTML="<p>Gagal mengambil produk.</p>";
+
+}
+
+}
+
+// Menampilkan produk
+function tampilkanProduk(data){
+
+daftarProduk.innerHTML="";
+
+if(data.length==0){
+
+daftarProduk.innerHTML="<p>Tidak ada produk ditemukan.</p>";
+
+return;
+
+}
+
+data.forEach((produk)=>{
 
 const card=document.createElement("div");
 
@@ -46,7 +86,7 @@ ${produk.deskripsi || "-"}
 </p>
 
 <a
-href="detailproduk.html?id=${item.id}"
+href="detailproduk.html?id=${produk.id}"
 style="
 display:block;
 margin-top:10px;
@@ -78,14 +118,29 @@ daftarProduk.appendChild(card);
 });
 
 }
-catch(error){
 
-console.log(error);
+// Pencarian realtime
+cariProduk.addEventListener("input",()=>{
 
-daftarProduk.innerHTML="<p>Gagal mengambil produk.</p>";
+const kata = cariProduk.value.toLowerCase();
 
-}
+const hasil = semuaProduk.filter((produk)=>{
 
-}
+return (
 
-tampilkanProduk();
+produk.namaProduk.toLowerCase().includes(kata) ||
+
+(produk.namaToko || "").toLowerCase().includes(kata) ||
+
+(produk.kategori || "").toLowerCase().includes(kata)
+
+);
+
+});
+
+tampilkanProduk(hasil);
+
+});
+
+// Jalankan
+ambilProduk();
