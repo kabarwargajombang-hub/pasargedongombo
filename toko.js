@@ -1,16 +1,25 @@
 import { db } from "./firebase.js";
 
+
 import {
+
 collection,
+
 getDocs,
+
 doc,
+
 getDoc,
+
 query,
+
 where
+
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// Ambil ID toko dari URL
+
+// Ambil UID dari URL
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -18,17 +27,23 @@ const uidToko = urlParams.get("uid");
 
 
 
+// Element HTML
+
 const namaToko = document.getElementById("namaToko");
 
 const pemilik = document.getElementById("pemilik");
 
 const whatsapp = document.getElementById("whatsapp");
 
+const jumlahProdukTampil = document.getElementById("jumlahProduk");
+
 const produkToko = document.getElementById("produkToko");
 
 
 
-// Ambil data toko
+
+
+// Tampilkan data toko
 
 async function tampilkanToko(){
 
@@ -37,6 +52,7 @@ try{
 
 
 const tokoRef = doc(db,"toko",uidToko);
+
 
 const tokoSnap = await getDoc(tokoRef);
 
@@ -48,33 +64,44 @@ if(tokoSnap.exists()){
 const data = tokoSnap.data();
 
 
-namaToko.innerHTML = "🏪 " + (data.namaToko || "Toko Gedongombo");
+
+namaToko.innerHTML =
+
+"🏪 " + (data.namaToko || "Toko Gedongombo");
+
 
 
 pemilik.innerHTML =
-"👤 " + (data.namaPemilik || "");
+
+"👤 " + (data.namaPemilik || "-");
+
 
 
 whatsapp.innerHTML =
-"📱 " + (data.whatsapp || "");
+
+"📱 " + (data.whatsapp || "-");
+
 
 
 }
 
 
+}
 
-}catch(error){
+catch(error){
 
 console.log(error);
 
 }
 
+
 }
 
 
 
 
-// Ambil produk toko
+
+// Tampilkan produk toko
 
 async function tampilkanProduk(){
 
@@ -100,21 +127,38 @@ produkToko.innerHTML="";
 
 
 
+let jumlahProduk = 0;
+
+
+
 if(hasil.empty){
 
-produkToko.innerHTML =
+
+produkToko.innerHTML=
+
 "<p>Belum ada produk.</p>";
+
+
+jumlahProdukTampil.innerHTML=
+
+"📦 Jumlah Produk: 0";
+
 
 return;
 
+
 }
+
 
 
 
 hasil.forEach((item)=>{
 
 
-const produk=item.data();
+jumlahProduk++;
+
+
+const produk = item.data();
 
 
 
@@ -128,8 +172,11 @@ produkToko.innerHTML += `
 
 
 <h3>
+
 ${produk.namaProduk}
+
 </h3>
+
 
 
 <div class="harga">
@@ -139,14 +186,18 @@ Rp${Number(produk.harga).toLocaleString("id-ID")}
 </div>
 
 
+
 <p>
+
 Stok : ${produk.stok}
+
 </p>
+
 
 
 <a class="wa"
 
-href="https://wa.me/${produk.whatsapp}?text=Halo,%20saya%20tertarik%20${encodeURIComponent(produk.namaProduk)}">
+href="https://wa.me/${produk.whatsapp}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(produk.namaProduk)}">
 
 💬 Chat WhatsApp
 
@@ -159,18 +210,33 @@ href="https://wa.me/${produk.whatsapp}?text=Halo,%20saya%20tertarik%20${encodeUR
 `;
 
 
-
 });
 
 
 
-}catch(error){
+
+jumlahProdukTampil.innerHTML=
+
+"📦 Jumlah Produk: " + jumlahProduk;
+
+
+
+}
+
+
+catch(error){
 
 console.log(error);
 
-}
+produkToko.innerHTML=
+
+"Gagal mengambil produk";
 
 }
+
+
+}
+
 
 
 
