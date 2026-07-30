@@ -139,6 +139,10 @@ padding-bottom:80px;
 }
 </style>
 
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#198754">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+  
 </head>
 
 <body>
@@ -225,7 +229,21 @@ Tentang Kami
 </footer>
 
   <script type="module" src="produk.js"></script>
-  <script type="module" src="menu.js"></script>
-  
+<script type="module" src="menu.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js")
+        .then(function(registration){
+            console.log("PWA berhasil", registration.scope);
+        })
+        .catch(function(error){
+            console.log("PWA gagal", error);
+        });
+    });
+}
+</script>
+
 </body>
 </html>
