@@ -1,1 +1,0 @@
-Folder ikon PWA
