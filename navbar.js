@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const currentPage = window.location.pathname.split("/").pop();
 
-const nav = `
+const navbar = `
 <footer class="bottom-nav">
 
 <a href="index.html" class="${currentPage==="index.html"||currentPage===""?"active":""}">
@@ -33,6 +33,6 @@ const nav = `
 </footer>
 `;
 
-document.body.insertAdjacentHTML("beforeend", nav);
+document.body.insertAdjacentHTML("beforeend", navbar);
 
 });
