@@ -1,9 +1,16 @@
+// ==========================================
+// PASAR GEDONGOMBO FRAMEWORK v2
+// Navbar Global
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
 const currentPage = window.location.pathname.split("/").pop();
 
-let menu = `
+const nav = `
 <footer class="bottom-nav">
 
-<a href="index.html" ${currentPage=="index.html"||currentPage==""?'style="color:#0d6efd"':''}>
+<a href="index.html" class="${currentPage==="index.html"||currentPage===""?"active":""}">
 🏠<br>Beranda
 </a>
 
@@ -19,11 +26,19 @@ let menu = `
 👤<br>Akun
 </a>
 
-<a href="tentang.html" ${currentPage=="tentang.html"?'style="color:#0d6efd"':''}>
+<a href="tentang.html" class="${currentPage==="tentang.html"?"active":""}">
 ℹ️<br>Tentang
 </a>
 
 </footer>
 `;
 
-document.write(menu);
+const container = document.getElementById("bottom-nav");
+
+if(container){
+
+container.innerHTML = nav;
+
+}
+
+});
