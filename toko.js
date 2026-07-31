@@ -37,7 +37,6 @@ const produkToko = document.getElementById("produkToko");
 
 
 
-
 // Simpan nomor WA toko
 
 let nomorWA = "";
@@ -180,6 +179,7 @@ return;
 
 
 
+
 hasil.forEach((item)=>{
 
 
@@ -187,6 +187,12 @@ jumlahProduk++;
 
 
 const produk = item.data();
+
+
+// ID produk Firebase
+
+const idProduk = item.id;
+
 
 
 
@@ -223,6 +229,20 @@ Rp${Number(produk.harga).toLocaleString("id-ID")}
 Stok : ${produk.stok}
 
 </p>
+
+
+
+
+
+<a
+
+class="btn"
+
+href="detailproduk.html?id=${idProduk}">
+
+📦 Lihat Detail Produk
+
+</a>
 
 
 
