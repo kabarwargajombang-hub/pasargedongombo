@@ -1,10 +1,20 @@
 // ==========================================
 // PASAR GEDONGOMBO FRAMEWORK v4
-// Navbar Global Dinamis
+// Navbar Global Final
+// Pembeli & Penjual
 // ==========================================
 
 
+import { auth } from "./firebase.js";
+
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+
 const currentPage = window.location.pathname.split("/").pop();
+
 
 
 function active(page){
@@ -15,29 +25,34 @@ return currentPage === page ? "active" : "";
 
 
 
-// Cek status login Firebase
 
-import { auth } from "./firebase.js";
-
-import {
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+function tampilkanNavbar(user){
 
 
 
-
-
-function buatNavbar(user){
-
+let menuKedua = "";
 
 let menuAkun = "";
 
 
 
+
+// Jika penjual login
+
 if(user){
 
 
-// Penjual sudah login
+menuKedua = `
+
+<a href="toko.html" class="${active("toko.html")}">
+
+🛒<br>Toko
+
+</a>
+
+`;
+
+
 
 menuAkun = `
 
@@ -53,16 +68,29 @@ menuAkun = `
 
 }
 
+
+// Jika pembeli
+
 else{
 
 
-// Konsumen belum login
+menuKedua = `
+
+<a href="index.html#kategori">
+
+📂<br>Kategori
+
+</a>
+
+`;
+
+
 
 menuAkun = `
 
-<a href="login.html" class="${active("login.html")}">
+<a href="login.html">
 
-🔐<br>Login
+👤<br>Akun
 
 </a>
 
@@ -71,6 +99,7 @@ menuAkun = `
 
 
 }
+
 
 
 
@@ -89,16 +118,12 @@ const navbar = `
 
 
 
-<a href="toko.html" class="${active("toko.html")}">
-
-🛒<br>Toko
-
-</a>
+${menuKedua}
 
 
 
 
-<a href="tambahproduk.html" class="${active("tambahproduk.html")}">
+<a href="tambahproduk.html">
 
 ➕<br>Jual
 
@@ -126,9 +151,14 @@ ${menuAkun}
 
 
 
+
+
 document.body.insertAdjacentHTML(
+
 "beforeend",
+
 navbar
+
 );
 
 
@@ -138,11 +168,10 @@ navbar
 
 
 
-
 onAuthStateChanged(auth,(user)=>{
 
 
-buatNavbar(user);
+tampilkanNavbar(user);
 
 
 });
