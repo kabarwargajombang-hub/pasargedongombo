@@ -29,24 +29,26 @@ return currentPage === page ? "active" : "";
 function tampilkanNavbar(user){
 
 
-
 let menuKedua = "";
 
 let menuAkun = "";
 
 
 
-
-// Jika penjual login
+// ==============================
+// PENJUAL LOGIN
+// ==============================
 
 if(user){
 
 
 menuKedua = `
 
-<a href="toko.html" class="${active("toko.html")}">
+<a href="./toko.html"
+class="${active("toko.html")}">
 
-🛒<br>Toko
+🛒<br>
+Toko
 
 </a>
 
@@ -56,9 +58,11 @@ menuKedua = `
 
 menuAkun = `
 
-<a href="dashboard.html" class="${active("dashboard.html")}">
+<a href="./dashboard.html"
+class="${active("dashboard.html")}">
 
-👤<br>Akun
+👤<br>
+Akun
 
 </a>
 
@@ -69,15 +73,22 @@ menuAkun = `
 }
 
 
-// Jika pembeli
+
+// ==============================
+// PEMBELI
+// ==============================
 
 else{
 
 
 menuKedua = `
 
-<a href="kategori.html">
-📂<br>Kategori
+<a href="./kategori.html"
+class="${active("kategori.html")}">
+
+📂<br>
+Kategori
+
 </a>
 
 `;
@@ -86,9 +97,10 @@ menuKedua = `
 
 menuAkun = `
 
-<a href="login.html">
+<a href="./login.html">
 
-👤<br>Akun
+👤<br>
+Akun
 
 </a>
 
@@ -97,7 +109,6 @@ menuAkun = `
 
 
 }
-
 
 
 
@@ -105,14 +116,19 @@ menuAkun = `
 
 const navbar = `
 
+
 <footer class="bottom-nav">
 
 
-<a href="index.html" class="${active("index.html")}">
 
-🏠<br>Beranda
+<a href="./index.html"
+class="${active("index.html")}">
+
+🏠<br>
+Beranda
 
 </a>
+
 
 
 
@@ -121,9 +137,10 @@ ${menuKedua}
 
 
 
-<a href="tambahproduk.html">
+<a href="./tambahproduk.html">
 
-➕<br>Jual
+➕<br>
+Jual
 
 </a>
 
@@ -135,15 +152,18 @@ ${menuAkun}
 
 
 
-<a href="tentang.html" class="${active("tentang.html")}">
+<a href="./tentang.html"
+class="${active("tentang.html")}">
 
-ℹ️<br>Tentang
+ℹ️<br>
+Tentang
 
 </a>
 
 
 
 </footer>
+
 
 `;
 
@@ -162,6 +182,7 @@ navbar
 
 
 }
+
 
 
 
