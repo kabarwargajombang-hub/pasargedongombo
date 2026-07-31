@@ -6,13 +6,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Detail Produk</title>
+
 <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="detail-produk.css">
-  
+<style>
+
+.detail-container{
+padding:20px;
+}
+
+.detail-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:15px;
+
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+
+}
+
+.detail-card h2{
+
+margin-bottom:10px;
+
+}
+
+.detail-info{
+
+margin-top:10px;
+
+font-size:16px;
+
+}
+
+.detail-harga{
+
+color:#dc3545;
+
+font-size:24px;
+
+font-weight:bold;
+
+margin-top:15px;
+
+}
+
+.detail-wa{
+
+display:block;
+
+margin-top:20px;
+
+background:#25D366;
+
+color:white;
+
+text-decoration:none;
+
+padding:15px;
+
+text-align:center;
+
+border-radius:10px;
+
+font-weight:bold;
+
+}
+
+.detail-kembali{
+
+display:block;
+
+margin-top:20px;
+
+text-align:center;
+
+text-decoration:none;
+
+color:#198754;
+
+font-weight:bold;
+
+}
+
+</style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -22,68 +107,101 @@
 
 </header>
 
-<div class="container">
 
-<div class="card">
+<div class="detail-container">
 
-<h2 id="namaProduk">...</h2>
 
-<div class="harga" id="harga">
+<div class="detail-card">
+
+
+<h2 id="namaProduk">
+...
+</h2>
+
+
+<div class="detail-harga" id="harga">
+
 Rp0
+
 </div>
 
-<p class="info">
+
+<p class="detail-info">
+
 📦 Stok :
 <span id="stok"></span>
+
 </p>
 
-<p class="info">
+
+<p class="detail-info">
+
 📂 Kategori :
 <span id="kategori"></span>
+
 </p>
 
-<p class="info">
+
+<p class="detail-info">
+
 🏪 Toko :
 <span id="namaToko"></span>
+
 </p>
 
-<p class="info">
+
+<p class="detail-info">
+
 👤 Pemilik :
 <span id="pemilik"></span>
+
 </p>
 
-<p class="info">
+
+<p class="detail-info">
+
 📝 Deskripsi :
+
 </p>
+
 
 <p id="deskripsi"></p>
 
+
+
 <a
 id="chatWA"
-class="wa"
+class="detail-wa"
 href="#">
 
 💬 Chat WhatsApp
 
 </a>
 
+
+
 <a
-class="kembali"
+class="detail-kembali"
 href="index.html">
 
 ⬅ Kembali
 
 </a>
 
-</div>
 
 </div>
+
+
+</div>
+
+
 
 <script src="navbar.js"></script>
 
 <script src="app.js"></script>
 
 <script type="module" src="detail-produk.js"></script>
-  
+
+
 </body>
 </html>
