@@ -1,60 +1,18 @@
 // ==========================================
-// PASAR GEDONGOMBO FRAMEWORK v3
-// app.js
+// PASAR GEDONGOMBO FRAMEWORK v4
+// app.js FINAL
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", () => {
 
-const menuJual = document.getElementById("menuJual");
-const menuAkun = document.getElementById("menuAkun");
+// Kosongkan karena navigasi sudah diatur navbar.js
+// Firebase Auth mengatur status login
+// Jangan memakai localStorage lagi
 
-// cek status login
-const statusLogin = localStorage.getItem("statusLogin");
 
-// =============================
-// MENU JUAL
-// =============================
-if(menuJual){
+document.addEventListener("DOMContentLoaded",()=>{
 
-menuJual.addEventListener("click", function(e){
 
-e.preventDefault();
+console.log("App berjalan");
 
-if(statusLogin==="login"){
-
-window.location.href="dashboard.html";
-
-}else{
-
-window.location.href="login.html";
-
-}
-
-});
-
-}
-
-// =============================
-// MENU AKUN
-// =============================
-if(menuAkun){
-
-menuAkun.addEventListener("click", function(e){
-
-e.preventDefault();
-
-if(statusLogin==="login"){
-
-window.location.href="dashboard.html";
-
-}else{
-
-window.location.href="login.html";
-
-}
-
-});
-
-}
 
 });
