@@ -1,11 +1,15 @@
 // ==========================================
 // PASAR GEDONGOMBO
-// toko.js FINAL
-// Menampilkan Profil Toko + Produk Toko
+// toko.js FINAL PERBAIKAN UID
 // ==========================================
 
 
-import { db } from "./firebase.js";
+import { auth, db } from "./firebase.js";
+
+
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
@@ -20,70 +24,97 @@ where
 
 
 
-
-// Ambil UID toko dari URL
+// Ambil UID dari URL
 
 const urlParams = new URLSearchParams(
 window.location.search
 );
 
 
-const uidToko = urlParams.get("uid");
+let uidToko = urlParams.get("uid");
 
 
 
 
 
-// Element halaman
-
-const namaToko = document.getElementById("namaToko");
-
-const pemilik = document.getElementById("pemilik");
-
-const whatsapp = document.getElementById("whatsapp");
-
-const jumlahProdukTampil = document.getElementById("jumlahProduk");
-
-const produkToko = document.getElementById("produkToko");
+const namaToko =
+document.getElementById("namaToko");
 
 
+const pemilik =
+document.getElementById("pemilik");
+
+
+const whatsapp =
+document.getElementById("whatsapp");
+
+
+const jumlahProduk =
+document.getElementById("jumlahProduk");
+
+
+const produkToko =
+document.getElementById("produkToko");
 
 
 
-let nomorWA = "";
+
+
+let nomorWA="";
 
 
 
 
 
-// ================================
-// TAMPILKAN DATA TOKO
-// ================================
-
-async function tampilkanToko(){
 
 
-try{
+// Cek login
+
+onAuthStateChanged(auth, async(user)=>{
 
 
-if(!uidToko){
+// Jika tidak ada UID URL
+// dan user login = toko sendiri
 
-namaToko.innerHTML =
-"🏪 Pasar Gedongombo";
-
-
-pemilik.innerHTML =
-"Tempat Belanja Produk Lokal";
+if(!uidToko && user){
 
 
-return;
+uidToko = user.uid;
+
 
 }
 
 
 
+if(uidToko){
 
-const tokoRef = doc(
+
+tampilkanToko();
+
+tampilkanProduk();
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+// =========================
+// DATA TOKO
+// =========================
+
+async function tampilkanToko(){
+
+
+const ref = doc(
 db,
 "toko",
 uidToko
@@ -91,14 +122,14 @@ uidToko
 
 
 
-const tokoSnap = await getDoc(tokoRef);
+const snap = await getDoc(ref);
 
 
 
-if(tokoSnap.exists()){
+if(snap.exists()){
 
 
-const data = tokoSnap.data();
+const data = snap.data();
 
 
 
@@ -120,7 +151,8 @@ nomorWA = data.whatsapp || "";
 
 
 
-nomorWA = nomorWA.replace(/\D/g,"");
+nomorWA =
+nomorWA.replace(/\D/g,"");
 
 
 
@@ -128,8 +160,7 @@ if(nomorWA.startsWith("0")){
 
 
 nomorWA =
-"62" + nomorWA.substring(1);
-
+"62"+nomorWA.substring(1);
 
 }
 
@@ -137,20 +168,9 @@ nomorWA =
 
 whatsapp.innerHTML =
 
-"📱 " + nomorWA;
+"📱 "+nomorWA;
 
 
-
-}
-
-
-
-}
-
-
-catch(error){
-
-console.log(error);
 
 }
 
@@ -164,14 +184,13 @@ console.log(error);
 
 
 
-// ================================
-// TAMPILKAN PRODUK TOKO
-// ================================
+
+// =========================
+// PRODUK TOKO
+// =========================
 
 async function tampilkanProduk(){
 
-
-try{
 
 
 const q = query(
@@ -192,39 +211,11 @@ const hasil = await getDocs(q);
 
 
 
-produkToko.innerHTML = "";
+produkToko.innerHTML="";
 
 
 
-let jumlahProduk = 0;
-
-
-
-
-
-if(hasil.empty){
-
-
-produkToko.innerHTML =
-
-`
-<p>
-Belum ada produk.
-</p>
-`;
-
-
-jumlahProdukTampil.innerHTML =
-
-"📦 Jumlah Produk: 0";
-
-
-return;
-
-
-}
-
-
+let jumlah=0;
 
 
 
@@ -233,16 +224,10 @@ return;
 hasil.forEach((item)=>{
 
 
-jumlahProduk++;
+jumlah++;
 
 
-const produk = item.data();
-
-
-const idProduk = item.id;
-
-
-
+const produk=item.data();
 
 
 
@@ -252,24 +237,12 @@ produkToko.innerHTML += `
 <div class="produk-toko">
 
 
-
-<img 
-
-src="${produk.foto || 'https://picsum.photos/600/350'}"
-
->
-
-
+<img src="${produk.foto || 'https://picsum.photos/600/350'}">
 
 
 <h3>
-
 ${produk.namaProduk}
-
 </h3>
-
-
-
 
 
 <div class="harga">
@@ -280,9 +253,6 @@ Rp${Number(produk.harga)
 </div>
 
 
-
-
-
 <p class="stok">
 
 📦 Stok : ${produk.stok}
@@ -291,39 +261,16 @@ Rp${Number(produk.harga)
 
 
 
-
-
-<a
-
-class="detail"
-
-href="./detailproduk.html?id=${idProduk}"
-
->
+<a class="detail"
+href="detailproduk.html?id=${item.id}">
 
 👁️ Lihat Produk
 
 </a>
 
 
-
-
-
-<a
-
-class="wa"
-
-href="https://wa.me/${nomorWA}?text=${encodeURIComponent(
-
-"Halo, saya tertarik dengan produk " +
-
-produk.namaProduk +
-
-" di Pasar Gedongombo."
-
-)}"
-
->
+<a class="wa"
+href="https://wa.me/${nomorWA}">
 
 💬 Chat WhatsApp
 
@@ -331,9 +278,7 @@ produk.namaProduk +
 
 
 
-
 </div>
-
 
 
 `;
@@ -346,41 +291,23 @@ produk.namaProduk +
 
 
 
+jumlahProduk.innerHTML =
 
-jumlahProdukTampil.innerHTML =
-
-"📦 Jumlah Produk: " + jumlahProduk;
-
-
-
-}
+"📦 Jumlah Produk: "+jumlah;
 
 
 
-catch(error){
 
 
-console.log(error);
+if(jumlah===0){
 
 
+produkToko.innerHTML=
 
-produkToko.innerHTML =
-
-"Gagal mengambil produk";
+"<p>Belum ada produk.</p>";
 
 
 }
 
 
-
 }
-
-
-
-
-
-
-await tampilkanToko();
-
-
-tampilkanProduk();
