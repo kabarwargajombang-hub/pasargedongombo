@@ -1,5 +1,5 @@
 // ==========================================
-// PASAR GEDONGOMBO FRAMEWORK v2
+// PASAR GEDONGOMBO FRAMEWORK v3
 // Navbar Global
 // ==========================================
 
@@ -33,12 +33,6 @@ const nav = `
 </footer>
 `;
 
-const container = document.getElementById("bottom-nav");
-
-if(container){
-
-container.innerHTML = nav;
-
-}
+document.body.insertAdjacentHTML("beforeend", nav);
 
 });
