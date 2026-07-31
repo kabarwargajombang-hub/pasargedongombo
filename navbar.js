@@ -76,10 +76,8 @@ else{
 
 menuKedua = `
 
-<a href="index.html#kategori">
-
+<a href="kategori.html">
 📂<br>Kategori
-
 </a>
 
 `;
