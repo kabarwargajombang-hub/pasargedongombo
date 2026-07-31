@@ -1,0 +1,299 @@
+/* ==========================
+   PASAR GEDONGOMBO v1.2
+========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+html,
+body{
+width:100%;
+overflow-x:hidden;
+background:#f4f4f4;
+padding-bottom:85px;
+}
+
+/* HEADER */
+
+header{
+background:#198754;
+color:white;
+padding:18px;
+text-align:center;
+}
+
+header h1{
+font-size:28px;
+}
+
+header p{
+margin-top:5px;
+font-size:15px;
+}
+
+/* SEARCH */
+
+.search{
+padding:15px;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+/* MENU */
+
+.menu{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+padding:15px;
+}
+
+.menu div{
+background:white;
+padding:15px;
+border-radius:12px;
+text-align:center;
+font-size:14px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+transition:.2s;
+}
+
+.menu div:hover{
+
+background:#198754;
+
+color:white;
+
+transform:translateY(-2px);
+
+}
+
+/* PRODUK */
+
+.produk{
+
+padding:15px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:15px;
+
+padding:12px;
+
+margin-bottom:18px;
+
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.card img{
+
+width:100%;
+
+border-radius:10px;
+
+display:block;
+
+}
+
+.card h3{
+
+margin-top:10px;
+
+font-size:18px;
+
+}
+
+.harga{
+
+color:#dc3545;
+
+font-size:22px;
+
+font-weight:bold;
+
+margin:8px 0;
+
+}
+
+.stok{
+
+color:#198754;
+
+font-weight:bold;
+
+margin-bottom:8px;
+
+}
+
+.wa{
+
+display:block;
+
+margin-top:12px;
+
+background:#25D366;
+
+color:white;
+
+text-align:center;
+
+padding:12px;
+
+border-radius:10px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+transition:.2s;
+
+}
+
+.wa:hover{
+
+background:#1fb85a;
+
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+
+position:fixed;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+height:70px;
+
+background:#ffffff;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+box-shadow:0 -2px 10px rgba(0,0,0,.15);
+
+z-index:9999;
+
+padding-bottom:env(safe-area-inset-bottom);
+
+}
+
+.bottom-nav a{
+
+flex:1;
+
+text-align:center;
+
+text-decoration:none;
+
+color:#198754;
+
+font-size:13px;
+
+font-weight:bold;
+
+padding-top:6px;
+
+}
+
+.bottom-nav a:hover{
+
+color:#146c43;
+
+}
+
+/* INSTALL */
+
+#installBtn{
+
+position:fixed;
+
+right:20px;
+
+bottom:90px;
+
+background:#198754;
+
+color:white;
+
+border:none;
+
+padding:14px 18px;
+
+border-radius:30px;
+
+font-size:14px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:0 4px 10px rgba(0,0,0,.25);
+
+z-index:99999;
+
+display:none;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:480px){
+
+header h1{
+
+font-size:24px;
+
+}
+
+.menu{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+.menu div{
+
+font-size:13px;
+
+padding:12px;
+
+}
+
+.card h3{
+
+font-size:17px;
+
+}
+
+.harga{
+
+font-size:20px;
+
+}
+
+}
