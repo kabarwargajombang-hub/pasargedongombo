@@ -4,110 +4,298 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Profil Toko</title>
+
+<title>Toko - Pasar Gedongombo</title>
+
 
 <link rel="stylesheet" href="style.css">
 
+
 <style>
 
+
 header{
+
 background:#198754;
+
 color:white;
+
 padding:20px;
+
 text-align:center;
+
 }
+
+
 
 .container{
+
 padding:15px;
+
 }
+
+
 
 .info-toko{
+
 background:white;
+
 padding:20px;
+
 border-radius:15px;
+
 box-shadow:0 2px 8px rgba(0,0,0,.1);
-margin-bottom:15px;
+
+margin-bottom:20px;
+
 }
 
-.produk{
+
+
+.info-toko h2{
+
+color:#198754;
+
+margin-bottom:10px;
+
+}
+
+
+
+.produk-toko{
+
 background:white;
+
 padding:15px;
+
 border-radius:15px;
+
 margin-bottom:15px;
+
 box-shadow:0 2px 8px rgba(0,0,0,.1);
+
 }
 
-.produk img{
+
+
+.produk-toko img{
+
 width:100%;
+
 height:220px;
+
 object-fit:cover;
+
 border-radius:10px;
+
 }
+
+
+
+.produk-toko h3{
+
+margin-top:12px;
+
+}
+
+
 
 .harga{
-color:red;
+
+color:#dc3545;
+
 font-size:20px;
+
 font-weight:bold;
+
 margin-top:10px;
+
 }
 
-.wa{
-display:block;
-margin-top:10px;
-background:#25D366;
-color:white;
-padding:12px;
-border-radius:10px;
-text-align:center;
-text-decoration:none;
+
+
+.stok{
+
+color:#198754;
+
 font-weight:bold;
+
+margin-top:8px;
+
 }
+
+
+
+.wa{
+
+display:block;
+
+margin-top:15px;
+
+background:#25D366;
+
+color:white;
+
+padding:12px;
+
+border-radius:10px;
+
+text-align:center;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+
+
+.detail{
+
+display:block;
+
+margin-top:10px;
+
+background:#198754;
+
+color:white;
+
+padding:12px;
+
+border-radius:10px;
+
+text-align:center;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+
 
 </style>
 
+
 </head>
+
+
 
 <body>
 
+
+
 <header>
 
-<h2 id="namaToko">
-🏪 Nama Toko
+
+<h2>
+
+🛒 Toko Gedongombo
+
 </h2>
 
-<p id="pemilik">
-👤 Pemilik
+
+<p>
+
+Daftar produk UMKM warga
+
 </p>
 
-<p id="whatsapp">
-📱 WhatsApp
-</p>
-
-<p id="jumlahProduk">
-📦 Jumlah Produk: 0
-</p>
 
 </header>
 
+
+
+
+
+
 <div class="container">
+
+
+
+<div class="info-toko">
+
+
+
+<h2 id="namaToko">
+
+🏪 Nama Toko
+
+</h2>
+
+
+
+<p id="pemilik">
+
+👤 Pemilik
+
+</p>
+
+
+
+<p id="whatsapp">
+
+📱 WhatsApp
+
+</p>
+
+
+
+<p id="jumlahProduk">
+
+📦 Jumlah Produk: 0
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
 
 <div id="produkToko">
 
-</div>
+
+
+<p>
+
+Memuat produk...
+
+</p>
+
+
 
 </div>
 
-<!-- Navbar Global -->
+
+
+
+
+</div>
+
+
+
+
+
+
 <script type="module" src="navbar.js"></script>
+
 
 <script src="app.js"></script>
 
+
 <script type="module" src="toko.js"></script>
 
+
+
 </body>
-<h1 style="color:red;text-align:center">
-INI HALAMAN TOKO
-</h1>
+
+
 </html>
