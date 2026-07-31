@@ -132,6 +132,7 @@ dusun + " RT/RW " + rtRw + " Desa " + desa,
 
 email:email,
 
+role:"penjual",
 
 deskripsi:""
 
@@ -148,7 +149,7 @@ alert("Pendaftaran berhasil");
 
 
 
-window.location.href="dashboard.html";
+window.location.href="login.html";
 
 
 
