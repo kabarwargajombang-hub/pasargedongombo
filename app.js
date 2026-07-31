@@ -1,23 +1,25 @@
-// ====================================
-// Pasar Gedongombo Framework v2
+// ==========================================
+// PASAR GEDONGOMBO FRAMEWORK v2
 // app.js
-// ====================================
+// ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Memberi tanda halaman aktif di navbar
-    const currentPage = window.location.pathname.split("/").pop();
+    const menuJual = document.getElementById("menuJual");
+    const menuAkun = document.getElementById("menuAkun");
 
-    document.querySelectorAll(".bottom-nav a").forEach(link => {
+    if(menuJual){
+        menuJual.addEventListener("click", function(e){
+            e.preventDefault();
+            window.location.href = "login.html";
+        });
+    }
 
-        const href = link.getAttribute("href");
-
-        if(href === currentPage){
-
-            link.classList.add("active");
-
-        }
-
-    });
+    if(menuAkun){
+        menuAkun.addEventListener("click", function(e){
+            e.preventDefault();
+            window.location.href = "login.html";
+        });
+    }
 
 });
