@@ -1,136 +1,277 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pasar Gedongombo</title>
+
 
 <link rel="stylesheet" href="style.css">
 
-  <link rel="manifest" href="manifest.json">
+
+<link rel="manifest" href="manifest.json">
+
 <meta name="theme-color" content="#198754">
+
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-  
+
+
 </head>
+
 
 <body>
 
+
+
 <header>
-<h1>🛒 Pasar Gedongombo</h1>
-<p>Marketplace UMKM Desa Gedongombo</p>
+
+<h1>
+🛒 Pasar Gedongombo
+</h1>
+
+
+<p>
+Marketplace UMKM Desa Gedongombo
+</p>
+
+
 </header>
 
+
+
+
+
 <div class="search">
+
+
 <input
+
 type="text"
+
 id="cariProduk"
-placeholder="Cari produk...">
-</div>
 
-<div class="menu">
+placeholder="Cari produk..."
 
-<div class="kategori" data-kategori="Semua">
-🏠 Semua
-</div>
+>
 
-<div class="kategori" data-kategori="Minuman">
-🥤 Minuman
-</div>
-
-<div class="kategori" data-kategori="Makanan">
-🍚 Makanan
-</div>
-
-<div class="kategori" data-kategori="Pertanian">
-🌾 Pertanian
-</div>
-
-<div class="kategori" data-kategori="Perikanan">
-🐟 Perikanan
-</div>
-
-<div class="kategori" data-kategori="Jasa">
-🛠 Jasa
-</div>
 
 </div>
+
+
+
+
+
+
+<div class="produk-title">
+
+
+<h3>
+
+📦 Produk Terbaru
+
+</h3>
+
+
+</div>
+
+
+
+
+
+
+
 <div class="produk" id="daftarProduk">
 
+
 </div>
+
+
+
+
+
 
 <div id="bottom-nav"></div>
 
+
+
+
+
+
+
 <script type="module" src="navbar.js"></script>
+
 
 <script src="app.js"></script>
 
+
 <script type="module" src="produk.js"></script>
 
-<script type="module" src="menu.js"></script>
-  
+
+
+
+
+
+
 <button id="installBtn">
+
 📱 Install Pasar Gedongombo
+
 </button>
 
+
+
+
+
+
 <script>
+
+
 let deferredPrompt;
+
+
+
 
 window.addEventListener("beforeinstallprompt", function(e){
 
-    e.preventDefault();
 
-    deferredPrompt = e;
+e.preventDefault();
 
-    const installBtn = document.getElementById("installBtn");
 
-    installBtn.style.display = "block";
+deferredPrompt = e;
+
+
+
+const installBtn = document.getElementById("installBtn");
+
+
+installBtn.style.display = "block";
+
+
 
 });
+
+
+
+
+
 
 
 document.getElementById("installBtn").addEventListener("click", async function(){
 
-    if(deferredPrompt){
 
-        deferredPrompt.prompt();
 
-        const choiceResult = await deferredPrompt.userChoice;
+if(deferredPrompt){
 
-        if(choiceResult.outcome === "accepted"){
-            console.log("Pasar Gedongombo berhasil diinstall");
-        }
 
-        deferredPrompt = null;
 
-        document.getElementById("installBtn").style.display = "none";
+deferredPrompt.prompt();
 
-    }
+
+
+const choiceResult = await deferredPrompt.userChoice;
+
+
+
+if(choiceResult.outcome === "accepted"){
+
+
+console.log("Pasar Gedongombo berhasil diinstall");
+
+
+}
+
+
+
+deferredPrompt = null;
+
+
+
+document.getElementById("installBtn").style.display = "none";
+
+
+
+}
+
+
 
 });
+
+
+
+
+
 
 
 window.addEventListener("appinstalled", function(){
 
-    console.log("PWA sudah terpasang");
 
-    document.getElementById("installBtn").style.display = "none";
+
+console.log("PWA sudah terpasang");
+
+
+
+document.getElementById("installBtn").style.display = "none";
+
+
 
 });
-</script>
-  
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-        navigator.serviceWorker.register("./service-worker.js")
-        .then(function(registration){
-            console.log("PWA berhasil", registration.scope);
-        })
-        .catch(function(error){
-            console.log("PWA gagal", error);
-        });
-    });
-}
+
+
+
 </script>
 
+
+
+
+
+
+<script>
+
+
+if ("serviceWorker" in navigator) {
+
+
+window.addEventListener("load", function () {
+
+
+navigator.serviceWorker.register("./service-worker.js")
+
+
+.then(function(registration){
+
+
+console.log("PWA berhasil", registration.scope);
+
+
+})
+
+
+.catch(function(error){
+
+
+console.log("PWA gagal", error);
+
+
+});
+
+
+});
+
+
+}
+
+
+
+</script>
+
+
+
+
+
 </body>
+
 </html>
