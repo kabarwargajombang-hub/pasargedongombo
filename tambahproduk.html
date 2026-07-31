@@ -1,79 +1,113 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Tambah Produk</title>
 
+<link rel="stylesheet" href="style.css">
+
+
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
 
-body{
-background:#f5f5f5;
-}
+.form-container{
 
-header{
-background:#198754;
-color:white;
-text-align:center;
 padding:20px;
+
 }
 
-.container{
-padding:20px;
-}
 
-.card{
+.form-card{
+
 background:white;
+
 padding:20px;
+
 border-radius:15px;
+
 box-shadow:0 2px 10px rgba(0,0,0,.1);
+
 }
 
-input,textarea,select{
+
+.form-card input,
+.form-card textarea,
+.form-card select{
+
 width:100%;
+
 padding:14px;
+
 margin-top:15px;
+
 border:1px solid #ccc;
+
 border-radius:10px;
+
 font-size:16px;
+
 }
 
-textarea{
+
+.form-card textarea{
+
 height:120px;
+
 resize:none;
+
 }
 
-button{
+
+.form-card button{
+
 width:100%;
+
 padding:15px;
+
 margin-top:20px;
+
 background:#198754;
+
 color:white;
+
 border:none;
+
 border-radius:10px;
+
 font-size:18px;
+
 font-weight:bold;
+
 }
 
-.kembali{
+
+.form-kembali{
+
 display:block;
+
 text-align:center;
+
 margin-top:20px;
+
 text-decoration:none;
+
 color:#198754;
+
 font-weight:bold;
+
 }
+
+
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -83,14 +117,20 @@ font-weight:bold;
 
 </header>
 
-<div class="container">
 
-<div class="card">
+
+<div class="form-container">
+
+
+<div class="form-card">
+
 
 <input
 type="file"
 id="fotoProduk"
 accept="image/*">
+
+
 
 <img
 id="previewFoto"
@@ -101,15 +141,20 @@ border-radius:10px;
 display:none;
 ">
 
+
+
 <input
 type="text"
 id="namaProduk"
 placeholder="Nama Produk">
 
 
+
 <select id="kategori">
 
-<option value="">-- Pilih Kategori --</option>
+<option value="">
+-- Pilih Kategori --
+</option>
 
 <option>Makanan</option>
 <option>Minuman</option>
@@ -123,16 +168,20 @@ placeholder="Nama Produk">
 </select>
 
 
-<input 
+
+
+<input
 type="number"
 id="harga"
 placeholder="Harga">
 
 
-<input 
+
+<input
 type="number"
 id="stok"
 placeholder="Stok">
+
 
 
 <select id="satuan">
@@ -147,30 +196,47 @@ placeholder="Stok">
 </select>
 
 
-<textarea 
+
+
+<textarea
 id="deskripsi"
 placeholder="Deskripsi Produk"></textarea>
 
 
+
+
 <button id="simpanProduk">
+
 Simpan Produk
+
 </button>
 
-<a class="kembali" href="dashboard.html">
+
+
+
+<a class="form-kembali" href="dashboard.html">
 
 ⬅ Kembali ke Dashboard
 
 </a>
 
+
+
 </div>
 
 </div>
-  
+
+
+
+
 <script src="navbar.js"></script>
 
 <script src="app.js"></script>
 
-<script type="module" src="tambah-produk.js"></script>
-  
+<script type="module" src="tambahproduk.js"></script>
+
+
+
 </body>
+
 </html>
