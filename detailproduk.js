@@ -11,7 +11,10 @@ getDoc
 
 // Ambil ID produk dari URL
 
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(
+window.location.search
+);
+
 
 const id = params.get("id");
 
@@ -32,10 +35,14 @@ window.location.href="index.html";
 
 
 
-
 // Ambil data produk
 
-const produkRef = doc(db,"produk",id);
+const produkRef = doc(
+db,
+"produk",
+id
+);
+
 
 
 const produkSnap = await getDoc(produkRef);
@@ -62,7 +69,8 @@ data.namaProduk;
 
 
 document.getElementById("harga").textContent =
-"Rp" + Number(data.harga).toLocaleString("id-ID");
+"Rp" + Number(data.harga)
+.toLocaleString("id-ID");
 
 
 
@@ -93,11 +101,14 @@ data.deskripsi || "-";
 
 
 
-
-// Ambil nomor WhatsApp dari profil toko
+// ==============================
+// AMBIL DATA TOKO + ALAMAT
+// ==============================
 
 
 let nomorWA = "";
+
+let alamatToko = "-";
 
 
 
@@ -120,12 +131,51 @@ const tokoSnap = await getDoc(tokoRef);
 if(tokoSnap.exists()){
 
 
-nomorWA = tokoSnap.data().whatsapp || "";
+
+const toko = tokoSnap.data();
+
+
+
+nomorWA = toko.whatsapp || "";
+
+
+
+alamatToko = 
+toko.alamat || 
+(
+(toko.dusun || "") +
+" RT/RW " +
+(toko.rtRw || "") +
+" Desa " +
+(toko.desa || "")
+);
+
 
 
 }
 
 
+
+
+
+}
+
+
+
+// Tampilkan alamat
+
+const alamatElement =
+document.getElementById("alamat");
+
+
+
+if(alamatElement){
+
+
+alamatElement.textContent =
+alamatToko;
+
+
 }
 
 
@@ -133,21 +183,23 @@ nomorWA = tokoSnap.data().whatsapp || "";
 
 
 
-// Format nomor Indonesia
+
+// Format nomor WhatsApp
 
 
-nomorWA = nomorWA.replace(/\D/g,"");
+nomorWA =
+nomorWA.replace(/\D/g,"");
 
 
 
 if(nomorWA.startsWith("0")){
 
 
-nomorWA = "62" + nomorWA.substring(1);
+nomorWA =
+"62" + nomorWA.substring(1);
 
 
 }
-
 
 
 
