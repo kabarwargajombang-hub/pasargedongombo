@@ -5,12 +5,14 @@ collection,
 getDocs,
 doc,
 getDoc,
-updateDoc,
-increment
+query,
+orderBy,
+limit
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
 const daftarProduk = document.getElementById("daftarProduk");
+const produkTerlaris =
+document.getElementById("produkTerlaris");
 const cariProduk = document.getElementById("cariProduk");
 const tombolKategori = document.querySelectorAll(".kategori");
 
@@ -87,7 +89,94 @@ return "";
 }
 
 
+// =========================
+// PRODUK PALING DIMINATI
+// =========================
 
+async function tampilkanProdukTerlaris(){
+
+try{
+
+
+const q = query(
+
+collection(db,"produk"),
+
+orderBy("klikWA","desc"),
+
+limit(5)
+
+);
+
+
+
+const hasil =
+await getDocs(q);
+
+
+
+produkTerlaris.innerHTML="";
+
+
+
+hasil.forEach((item)=>{
+
+
+const produk =
+item.data();
+
+
+
+produkTerlaris.innerHTML += `
+
+
+<div class="populer-card">
+
+
+<img
+src="${produk.foto || 'https://picsum.photos/100'}"
+>
+
+
+<div class="populer-info">
+
+<h4>
+
+${produk.namaProduk}
+
+</h4>
+
+
+<p>
+
+💬 ${produk.klikWA || 0} peminat
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+
+}
 
 
 
@@ -434,3 +523,4 @@ filterProduk();
 // Jalankan
 
 ambilProduk();
+tampilkanProdukTerlaris();
