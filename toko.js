@@ -1,15 +1,11 @@
 // ==========================================
 // PASAR GEDONGOMBO
-// toko.js FINAL PERBAIKAN UID
+// toko.js FINAL v2
+// Etalase Toko Marketplace
 // ==========================================
 
 
-import { auth, db } from "./firebase.js";
-
-
-import {
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { db } from "./firebase.js";
 
 
 import {
@@ -23,32 +19,33 @@ where
 
 
 
-
 // Ambil UID dari URL
 
-const urlParams = new URLSearchParams(
-window.location.search
-);
+const urlParams =
+new URLSearchParams(window.location.search);
 
 
-let uidToko = urlParams.get("uid");
+const uidToko =
+urlParams.get("uid");
 
 
 
-
+// Element
 
 const namaToko =
 document.getElementById("namaToko");
 
+
 const fotoProfil =
 document.getElementById("fotoProfil");
+
 
 const pemilik =
 document.getElementById("pemilik");
 
 
-const whatsapp =
-document.getElementById("whatsapp");
+const lokasiToko =
+document.getElementById("lokasiToko");
 
 
 const jumlahProduk =
@@ -68,26 +65,6 @@ let nomorWA="";
 
 
 
-
-
-// Cek login
-
-onAuthStateChanged(auth, async(user)=>{
-
-
-// Jika tidak ada UID URL
-// dan user login = toko sendiri
-
-if(!uidToko && user){
-
-
-uidToko = user.uid;
-
-
-}
-
-
-
 if(uidToko){
 
 
@@ -97,11 +74,6 @@ tampilkanProduk();
 
 
 }
-
-
-
-});
-
 
 
 
@@ -116,46 +88,75 @@ tampilkanProduk();
 async function tampilkanToko(){
 
 
-const ref = doc(
-db,
-"toko",
-uidToko
-);
+const ref =
+doc(db,"toko",uidToko);
 
 
 
-const snap = await getDoc(ref);
+const snap =
+await getDoc(ref);
 
 
 
-if(snap.exists()){
+if(!snap.exists()) return;
 
 
-const data = snap.data();
-// Foto Profil
+
+const data =
+snap.data();
+
+
+
+
 
 if(data.fotoProfil){
 
-fotoProfil.src = data.fotoProfil;
+
+fotoProfil.src =
+data.fotoProfil;
+
 
 }
 
 
+
+
+
 namaToko.innerHTML =
 
-"🏪 " + 
+"🏪 " +
 (data.namaToko || "Toko Gedongombo");
+
 
 
 
 pemilik.innerHTML =
 
-"👤 " +
+"👤 Pemilik : " +
 (data.namaPemilik || "-");
 
 
 
-nomorWA = data.whatsapp || "";
+
+
+
+lokasiToko.innerHTML =
+
+"📍 " +
+
+(data.dusun || "") +
+
+", " +
+
+(data.desa || "");
+
+
+
+
+
+
+nomorWA =
+data.whatsapp || "";
 
 
 
@@ -166,21 +167,11 @@ nomorWA.replace(/\D/g,"");
 
 if(nomorWA.startsWith("0")){
 
-
 nomorWA =
 "62"+nomorWA.substring(1);
 
 }
 
-
-
-whatsapp.innerHTML =
-
-"📱 "+nomorWA;
-
-
-
-}
 
 
 }
@@ -200,7 +191,6 @@ whatsapp.innerHTML =
 async function tampilkanProduk(){
 
 
-
 const q = query(
 
 collection(db,"produk"),
@@ -215,7 +205,9 @@ uidToko
 
 
 
-const hasil = await getDocs(q);
+
+const hasil =
+await getDocs(q);
 
 
 
@@ -235,7 +227,9 @@ hasil.forEach((item)=>{
 jumlah++;
 
 
-const produk=item.data();
+const produk =
+item.data();
+
 
 
 
@@ -245,12 +239,25 @@ produkToko.innerHTML += `
 <div class="produk-toko">
 
 
-<img src="${produk.foto || 'https://picsum.photos/600/350'}">
+<img
+
+src="${
+produk.foto ||
+'https://picsum.photos/600/350'
+}"
+
+>
+
+
 
 
 <h3>
+
 ${produk.namaProduk}
+
 </h3>
+
+
 
 
 <div class="harga">
@@ -261,6 +268,8 @@ Rp${Number(produk.harga)
 </div>
 
 
+
+
 <p class="stok">
 
 📦 Stok : ${produk.stok}
@@ -269,7 +278,11 @@ Rp${Number(produk.harga)
 
 
 
-<a class="detail"
+
+
+<a
+class="detail"
+
 href="detailproduk.html?id=${item.id}">
 
 👁️ Lihat Produk
@@ -277,8 +290,14 @@ href="detailproduk.html?id=${item.id}">
 </a>
 
 
-<a class="wa"
-href="https://wa.me/${nomorWA}">
+
+
+
+<a
+
+class="wa"
+
+href="https://wa.me/${nomorWA}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(produk.namaProduk)}">
 
 💬 Chat WhatsApp
 
@@ -301,7 +320,7 @@ href="https://wa.me/${nomorWA}">
 
 jumlahProduk.innerHTML =
 
-"📦 Jumlah Produk: "+jumlah;
+"📦 Jumlah Produk: " + jumlah;
 
 
 
@@ -310,7 +329,7 @@ jumlahProduk.innerHTML =
 if(jumlah===0){
 
 
-produkToko.innerHTML=
+produkToko.innerHTML =
 
 "<p>Belum ada produk.</p>";
 
