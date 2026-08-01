@@ -1,3 +1,35 @@
+const fotoProfil =
+document.getElementById("fotoProfil");
+
+const previewFoto =
+document.getElementById("previewFoto");
+
+const btnFoto =
+document.getElementById("btnFoto");
+
+const statusFoto =
+document.getElementById("statusFoto");
+
+btnFoto.addEventListener("click",()=>{
+
+fotoProfil.click();
+
+});
+
+fotoProfil.addEventListener("change",()=>{
+
+const file=fotoProfil.files[0];
+
+if(!file)return;
+
+previewFoto.src=URL.createObjectURL(file);
+
+btnFoto.innerHTML="📷 Ganti Foto Lagi";
+
+statusFoto.innerHTML="✅ Foto berhasil dipilih";
+
+});
+
 // profil-toko.js
 
 
