@@ -40,6 +40,8 @@ let uidToko = urlParams.get("uid");
 const namaToko =
 document.getElementById("namaToko");
 
+const fotoProfil =
+document.getElementById("fotoProfil");
 
 const pemilik =
 document.getElementById("pemilik");
@@ -130,7 +132,13 @@ if(snap.exists()){
 
 
 const data = snap.data();
+// Foto Profil
 
+if(data.fotoProfil){
+
+fotoProfil.src = data.fotoProfil;
+
+}
 
 
 namaToko.innerHTML =
