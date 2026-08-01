@@ -391,3 +391,81 @@ transition:.2s;
 transform:translateY(-2px);
 
 }
+
+/* ==========================
+PRODUK PALING DIMINATI
+========================== */
+
+.produk-populer{
+
+display:flex;
+
+gap:12px;
+
+padding:15px;
+
+overflow-x:auto;
+
+}
+
+
+
+.populer-card{
+
+min-width:220px;
+
+background:white;
+
+border-radius:12px;
+
+padding:10px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+
+
+
+.populer-card img{
+
+width:60px;
+
+height:60px;
+
+object-fit:cover;
+
+border-radius:10px;
+
+}
+
+
+
+.populer-info h4{
+
+margin:0;
+
+font-size:16px;
+
+color:#198754;
+
+}
+
+
+
+.populer-info p{
+
+margin-top:5px;
+
+font-size:14px;
+
+font-weight:bold;
+
+color:#666;
+
+}
