@@ -1,4 +1,4 @@
-const CACHE_NAME = "pasar-gedongombo-v2";
+const CACHE_NAME = "pasar-gedongombo-v3";
 
 
 const urlsToCache = [
