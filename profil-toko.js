@@ -65,36 +65,31 @@ fotoProfil.click();
 
 
 
+let fotoBaru = null;
+
 
 fotoProfil.addEventListener("change",()=>{
 
-
 const file = fotoProfil.files[0];
-
 
 if(!file)return;
 
 
+// simpan file untuk upload saat tombol simpan ditekan
+
 fotoBaru = file;
 
 
-previewFoto.src =
-URL.createObjectURL(file);
+previewFoto.src = URL.createObjectURL(file);
 
 
-
-btnFoto.innerHTML =
-"📷 Ganti Foto Lagi";
+btnFoto.innerHTML="📷 Ganti Foto Lagi";
 
 
-statusFoto.innerHTML =
-"✅ Foto berhasil dipilih";
+statusFoto.innerHTML="✅ Foto berhasil dipilih";
 
 
 });
-
-
-
 
 
 
@@ -240,17 +235,13 @@ statusFoto.innerHTML =
 async function uploadFoto(file){
 
 
-
-const formData =
-new FormData();
-
+const formData = new FormData();
 
 
 formData.append(
 "file",
 file
 );
-
 
 
 formData.append(
@@ -260,8 +251,7 @@ formData.append(
 
 
 
-const response =
-await fetch(
+const response = await fetch(
 
 "https://api.cloudinary.com/v1_1/pthqkjlo/image/upload",
 
@@ -277,22 +267,14 @@ body:formData
 
 
 
-const hasil =
-await response.json();
+const hasil = await response.json();
 
 
 
 return hasil.secure_url;
 
 
-
 }
-
-
-
-
-
-
 
 
 // ==========================
