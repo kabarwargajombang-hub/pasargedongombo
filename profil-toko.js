@@ -381,6 +381,10 @@ namaPemilik:
 document.getElementById("namaPemilik").value,
 
 
+fotoProfil:
+
+document.getElementById("previewFoto").src,
+  
 whatsapp:
 document.getElementById("whatsapp").value,
 
