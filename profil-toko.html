@@ -76,6 +76,50 @@ text-decoration:none;
 
 }
 
+/* FOTO PROFIL */
+
+.fotoProfilBox{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.fotoProfil{
+
+width:130px;
+
+height:130px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:5px solid #198754;
+
+background:#eee;
+
+}
+
+#btnFoto{
+
+margin-top:15px;
+
+}
+
+#statusFoto{
+
+margin-top:10px;
+
+font-size:14px;
+
+color:#198754;
+
+font-weight:bold;
+
+}
+
 </style>
 
 </head>
@@ -88,6 +132,37 @@ text-decoration:none;
 
 
 <h2>🏪 Profil Toko</h2>
+<!-- FOTO PROFIL -->
+
+<div class="fotoProfilBox">
+
+<img
+id="previewFoto"
+src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+class="fotoProfil">
+
+<input
+type="file"
+id="fotoProfil"
+accept="image/*"
+hidden>
+
+<button
+type="button"
+id="btnFoto"
+class="btn">
+
+📷 Ganti Foto Profil
+
+</button>
+
+<p id="statusFoto" class="info">
+
+Belum ada foto profil
+
+</p>
+
+</div>
 
 
 <input 
