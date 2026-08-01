@@ -232,6 +232,9 @@ statusFoto.innerHTML =
 async function uploadFoto(file){
 
 
+console.log("File upload:", file);
+
+
 const formData = new FormData();
 
 
@@ -264,7 +267,14 @@ body:formData
 
 
 
+console.log("Status Cloudinary:", response.status);
+
+
+
 const hasil = await response.json();
+
+
+console.log("Hasil Cloudinary:", hasil);
 
 
 
