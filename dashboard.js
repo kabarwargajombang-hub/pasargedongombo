@@ -101,12 +101,30 @@ const hasil = await getDocs(q);
 tempatProduk.innerHTML="";
 
 let jumlah=0;
+  
+let totalKlikWA = 0;
+
+let produkTerlaris = "-";
+
+let klikTerbesar = 0;
 
 hasil.forEach((item)=>{
 
 jumlah++;
 
 const produk=item.data();
+
+const klikWA = produk.klikWA || 0;
+
+totalKlikWA += klikWA;
+
+if(klikWA > klikTerbesar){
+
+klikTerbesar = klikWA;
+
+produkTerlaris = produk.namaProduk;
+
+}
 
 tempatProduk.innerHTML += `
 
@@ -213,6 +231,9 @@ font-weight:bold;
 });
 
 jumlahProduk.innerHTML = jumlah;
+document.getElementById("totalKlikWA").innerHTML = totalKlikWA;
+
+document.getElementById("produkTerlaris").innerHTML = produkTerlaris;
 
 if(jumlah===0){
 
