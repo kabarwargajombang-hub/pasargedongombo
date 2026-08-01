@@ -38,11 +38,19 @@ fotoProfil.addEventListener("change",()=>{
 
 const file = fotoProfil.files[0];
 
-if(file){
+if(!file) return;
+
+// Preview Foto
 
 previewFoto.src = URL.createObjectURL(file);
 
-}
+// Ganti tulisan tombol
+
+btnFoto.innerHTML = "📷 Ganti Foto";
+
+// Tampilkan pesan berhasil
+
+alert("✅ Foto berhasil dipilih");
 
 });
 
