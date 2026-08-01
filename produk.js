@@ -4,7 +4,9 @@ import {
 collection,
 getDocs,
 doc,
-getDoc
+getDoc,
+updateDoc,
+increment
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
@@ -143,7 +145,35 @@ daftarProduk.innerHTML =
 }
 
 
+// =========================
+// HITUNG KLIK WHATSAPP
+// =========================
 
+async function tambahKlikWA(idProduk){
+
+try{
+
+await updateDoc(
+
+doc(db,"produk",idProduk),
+
+{
+
+klikWA: increment(1)
+
+}
+
+);
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+}
 
 
 
