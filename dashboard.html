@@ -10,11 +10,92 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+.container{
+padding:15px;
+}
+
+.card{
+background:#fff;
+border-radius:18px;
+padding:18px;
+margin-bottom:18px;
+box-shadow:0 2px 10px rgba(0,0,0,.12);
+}
+
+.profilHeader{
+text-align:center;
+}
+
+.profilHeader img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #198754;
+background:#eee;
+}
+
+.profilHeader h2{
+margin-top:12px;
+font-size:28px;
+color:#198754;
+}
+
+.profilHeader p{
+margin-top:8px;
+font-size:17px;
+}
+
+.editBtn{
+display:inline-block;
+margin-top:15px;
+padding:12px 25px;
+background:#198754;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.statistik{
+display:flex;
+justify-content:space-around;
+margin-top:15px;
+}
+
+.statItem{
+text-align:center;
+}
+
+.statItem h3{
+font-size:28px;
+color:#198754;
+margin-bottom:5px;
+}
+
+.statItem p{
+font-size:15px;
+}
+
+#produkSaya{
+margin-top:15px;
+}
+
+.logout{
+background:#dc3545;
+}
+
+.logout:hover{
+background:#bb2d3b;
+}
+
+</style>
+
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -24,141 +105,120 @@
 
 </header>
 
-
-
 <div class="container">
 
+<!-- PROFIL TOKO -->
 
+<div class="card profilHeader">
 
-<div class="card">
+<img
+id="fotoProfil"
+src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
 
-<h3>🏪 Toko Saya</h3>
+<h2 id="namaToko">
+Nama Toko
+</h2>
 
-<p class="info">
-Kelola informasi toko Anda.
+<p>
+
+<b>Pemilik :</b>
+
+<span id="namaPemilik">
+-
+</span>
+
 </p>
 
+<p>
 
-<a href="profil-toko.html" class="btn">
+📍
 
-🏪 Edit Profil Toko
+<span id="lokasiToko">
+Gedongombo
+</span>
+
+</p>
+
+<a
+href="profil-toko.html"
+class="editBtn">
+
+✏ Edit Profil
 
 </a>
 
+</div>
+
+<!-- STATISTIK -->
+
+<div class="card">
+
+<h3>📊 Statistik</h3>
+
+<div class="statistik">
+
+<div class="statItem">
+
+<h3 id="jumlahProduk">
+
+0
+
+</h3>
+
+<p>Produk</p>
 
 </div>
 
+<div class="statItem">
 
+<h3>
 
+0
 
+</h3>
+
+<p>Terjual</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PRODUK -->
 
 <div class="card">
 
 <h3>📦 Produk Saya</h3>
 
-
-<p class="info">
-
-Tambah, ubah, atau hapus produk.
-
-</p>
-
-
-
 <div id="produkSaya">
 
-<p class="info">
-
-Belum ada produk.
-
-</p>
+<p>Belum ada produk.</p>
 
 </div>
 
-
-
-<a href="tambahproduk.html" class="btn">
-
-➕ Tambah Produk
-
-</a>
-
-
-
 </div>
 
-
-
-
-
-
+<!-- LOGOUT -->
 
 <div class="card">
 
-
-<h3>📊 Statistik</h3>
-
-
-<p class="info">
-
-Jumlah Produk :
-
-<span id="jumlahProduk">
-
-0
-
-</span>
-
-</p>
-
-
-
-<p class="info">
-
-Produk Terjual : 0
-
-</p>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="card">
-
-
-<button id="logout" class="btn logout">
+<button
+id="logout"
+class="btn logout">
 
 Keluar
 
 </button>
 
-
 </div>
 
-
-
-
 </div>
-
-
-
-
-
 
 <script type="module" src="navbar.js"></script>
-
 <script src="app.js"></script>
-
 <script type="module" src="dashboard.js"></script>
-
 <script type="module" src="logout.js"></script>
-
-
 
 </body>
 
