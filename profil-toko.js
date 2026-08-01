@@ -65,9 +65,6 @@ fotoProfil.click();
 
 
 
-let fotoBaru = null;
-
-
 fotoProfil.addEventListener("change",()=>{
 
 const file = fotoProfil.files[0];
