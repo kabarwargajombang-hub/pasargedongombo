@@ -319,13 +319,19 @@ let urlFoto = "";
 
 if(fotoBaru){
 
+console.log("Foto dikirim:", fotoBaru);
 
 urlFoto =
 await uploadFoto(fotoBaru);
 
+console.log("URL foto:", urlFoto);
 
 }
+else{
 
+console.log("Tidak ada foto baru");
+
+}
 
 
 
