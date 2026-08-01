@@ -296,7 +296,175 @@ background:#eee;
 
 }
 
+/* ==========================
+   TOKO MARKETPLACE STYLE
+========================== */
 
+
+/* GRID PRODUK TOKO */
+
+.grid-produk{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+
+
+/* CARD PRODUK */
+
+.produk-toko{
+
+background:white;
+
+border-radius:15px;
+
+overflow:hidden;
+
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+
+padding:0;
+
+}
+
+
+
+/* FOTO PRODUK */
+
+.produk-toko img{
+
+width:100%;
+
+height:150px;
+
+object-fit:cover;
+
+border-radius:0;
+
+float:none;
+
+margin:0;
+
+}
+
+
+
+/* ISI PRODUK */
+
+.produk-toko h3{
+
+padding:12px 12px 5px;
+
+font-size:17px;
+
+color:#198754;
+
+}
+
+
+
+.produk-toko p{
+
+padding:0 12px;
+
+margin-top:6px;
+
+}
+
+
+
+/* HARGA */
+
+.produk-toko .harga{
+
+font-size:18px;
+
+font-weight:bold;
+
+color:#dc3545;
+
+padding:0 12px;
+
+}
+
+
+
+/* STOK */
+
+.produk-toko .stok{
+
+font-size:14px;
+
+color:#666;
+
+padding:0 12px;
+
+}
+
+
+
+/* BUTTON */
+
+.produk-toko .detail,
+.produk-toko .wa{
+
+display:block;
+
+margin:12px;
+
+text-align:center;
+
+}
+
+
+
+.produk-toko .detail{
+
+background:#198754;
+
+color:white;
+
+border-radius:10px;
+
+}
+
+
+
+.produk-toko .wa{
+
+background:#25D366;
+
+border-radius:10px;
+
+}
+
+
+
+
+
+/* RESPONSIVE */
+
+@media(max-width:480px){
+
+.grid-produk{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+.produk-toko img{
+
+height:120px;
+
+}
+
+
+}
 
 </style>
 
