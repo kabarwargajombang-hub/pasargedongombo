@@ -305,7 +305,10 @@ font-weight:bold;
 
 <a
 class="wa"
-href="https://wa.me/${nomorWA}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(produk.namaProduk)}">
+href="#"
+data-id="${produk.id}"
+data-wa="${nomorWA}"
+data-produk="${produk.namaProduk}">
 
 💬 Chat WhatsApp
 
@@ -319,7 +322,20 @@ href="https://wa.me/${nomorWA}?text=Halo,%20saya%20tertarik%20dengan%20${encodeU
 
 
 daftarProduk.appendChild(card);
+const tombolWA = card.querySelector(".wa");
 
+tombolWA.addEventListener("click", async(e)=>{
+
+e.preventDefault();
+
+await tambahKlikWA(produk.id);
+
+const url =
+`https://wa.me/${nomorWA}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(produk.namaProduk)}`;
+
+window.open(url,"_blank");
+
+});
 
 }
 
